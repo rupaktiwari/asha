@@ -5,11 +5,9 @@ import GoogleProvider from 'next-auth/providers/google'
 import connect from "../../../../lib/mongodb";
 import UsersL from '../../../../model/login'
 import { compare } from 'bcryptjs';
-//import { MongoDBAdapter } from "next-auth/mongodb-adapter"
-//import clientPromise from "./lib/mongodb"
 
 export const authOptions: NextAuthOptions = {
- // adapter: MongoDBAdapter(clientPromise),
+ 
   providers: [
     GoogleProvider({
       clientId:process.env.GOOGLE_ID,
@@ -23,18 +21,14 @@ export const authOptions: NextAuthOptions = {
       
       async authorize(credentials, req){
           connect().catch(error => { error: "Connection Failed...!"})
-         //const {email,password}=credentials
-          // check user existance
+         
+          //The credentials entered by the user is checked with all the users registered in the database.
           const user = await UsersL.findOne( {email :credentials.email})
-          //console.log(result)
+         
           if(!user){
               throw new Error("No user Found with Email Please Sign Up...!")
           }
 
-          // compare()
-          // const checkPassword = await compare(credentials.password, user.password);
-          // console.log(checkPassword)
-          // incorrect password
           if(credentials.password !== user.password || user.email !== credentials.email){
               throw new Error("Username or Password doesn't match");
           }
@@ -45,43 +39,6 @@ export const authOptions: NextAuthOptions = {
       }
       }),
     ],
-     
-      // maxAge: 30 * 24 * 60 * 60,
-      // secret: process.env.SECRET,
-
-  
-    //   encode: async ({ secret, token, maxAge }) => {
-    //     const encodedToken = encode(token, secret)
-    //     return encodedToken
-    //   },
-    //   decode: async ({ secret, token, maxAge }) => {
-    //     const decodedToken = decode(token, secret)
-    //     return decodedToken
-    //   }
-     
-      // callbacks:{
-      //   async session({ session,token, user }) {
-    
-      //     //session.user = token;
-      //       //console.log(session.user);
-          
-      //     if(user && user._id){
-      //       session.user.id=token.id;
-      //     }
-      //     console.log('session',{session,user})
-      //     return session;
-      //   },
-       
-      // async jwt({ token, user }) {
-      //  //return {...token, ...user}
-
-      
-      //  if(user && user._id){
-      //   token.id=user._id;
-      //  }
-      //  console.log('jwt',{token,user})
-      //  return token
-      //   },
       callbacks: {
         async session(session, user) {
           console.log("session", { session, user });

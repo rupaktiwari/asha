@@ -1,5 +1,6 @@
 import connect from "../../../lib/mongodb";
-import Individual from "../api/hello"
+
+import Individual from '../../../model/hello'
 
 export default async function handler(req, res) {
   try {

@@ -1,5 +1,5 @@
 import connect from "../../../lib/mongodb";
-import Organization from "./helloorg";
+import Organization from '../../../model/helloorg'
 connect()
 export default async function handler(req, res) {
     try {

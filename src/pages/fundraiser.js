@@ -1,7 +1,5 @@
-//yuta Issue Date vanni field add gara, ani tala hera, radio component lai maile aafai k kaso garera halexu tyo ni milaideu, Overall 
-//yuta field add garera css matra milau date haru ko
 import React from "react";
-import Individual from "./api/hello";
+import Individual from '../../model/hello'
 import Image from "next/image";
 import { useState } from "react";
 import axios from "axios";
@@ -159,20 +157,7 @@ const IndividualForm = () => {
             />
           </div>
          
-          {/* <div className="absolute top-[25.13rem] left-[-1.25rem] flex flex-col p-[0.63rem] items-start justify-start">
-            <div className="w-[40.63rem] h-[4.13rem] overflow-hidden shrink-0 flex flex-col items-start justify-start gap-[0.12rem]">
-              <div className="self-stretch relative tracking-[0.01em] leading-[144%]">
-                Organization Website
-              </div>
-              <input
-                className="[border:none] font-paragraph-ibm-plex-sans-medium text-[0.94rem] bg-surface-light self-stretch rounded-[3.76px] flex flex-col p-[0.71rem] items-start justify-start"
-                type="text"
-                placeholder="Social handle/Website"
-                value={orgweb}
-          onChange={(e) => setWebsite(e.target.value)}
-              />
-            </div>
-          </div> */}
+          
           <div className="absolute top-[0rem] left-[-0.62rem] w-[26.25rem] h-[2.28rem] overflow-hidden text-[1.38rem] text-midnightblue font-noto-sans">
             <div className="absolute top-[0.08rem] left-[0.08rem] leading-[0.98rem] font-medium inline-block w-[14.29rem] h-[2.23rem]">
               Personal Details
